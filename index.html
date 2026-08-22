@@ -360,36 +360,18 @@
 
   <footer>Good Vibes &middot; دخل و ديما مرحبا بيك</footer>
 
-<script>
-  const container = document.getElementById('particles');
-  const colors = ['rgba(168,85,247,0.55)','rgba(232,121,249,0.45)','rgba(124,58,237,0.5)'];
-  const count = window.innerWidth < 600 ? 14 : 26;
-  for(let i=0;i<count;i++){
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = 2 + Math.random()*5;
-    p.style.width = size+'px';
-    p.style.height = size+'px';
-    p.style.left = Math.random()*100+'vw';
-    p.style.bottom = (-10 - Math.random()*20)+'vh';
-    p.style.background = colors[Math.floor(Math.random()*colors.length)];
-    p.style.setProperty('--dx', (Math.random()*80-40)+'px');
-    p.style.animationDuration = (8 + Math.random()*10)+'s';
-    p.style.animationDelay = (Math.random()*10)+'s';
-    container.appendChild(p);
-  }
-</script><style>
+</script>
+
 <style>
 .rules {
     width: 90%;
     max-width: 900px;
-    margin: 80px auto 40px;
+    margin: 70px auto 40px;
     padding: 35px 25px;
     text-align: center;
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(168,85,247,0.25);
     border-radius: 22px;
-    box-sizing: border-box;
 }
 
 .rules h2 {
@@ -419,12 +401,14 @@
 }
 
 .footer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
     padding: 30px 20px;
-    margin-top: 60px;
+    margin-top: 40px;
     text-align: center;
     border-top: 1px solid rgba(255,255,255,0.08);
     background: rgba(0,0,0,0.18);
-    backdrop-filter: blur(12px);
 }
 
 .footer span {
