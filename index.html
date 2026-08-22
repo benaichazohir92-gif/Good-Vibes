@@ -380,6 +380,44 @@
   }
 </script><style>
 <style>
+.rules {
+    width: 90%;
+    max-width: 900px;
+    margin: 80px auto 40px;
+    padding: 35px 25px;
+    text-align: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 22px;
+    box-sizing: border-box;
+}
+
+.rules h2 {
+    margin: 0 0 30px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #fff;
+}
+
+.rules-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.rules-list p {
+    margin: 0;
+    padding: 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.7);
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+}
+
 .footer {
     padding: 30px 20px;
     margin-top: 60px;
@@ -396,7 +434,18 @@
     letter-spacing: 4px;
     color: rgba(255,255,255,0.65);
 }
+
+@media (max-width: 600px) {
+    .rules-list {
+        grid-template-columns: 1fr;
+    }
+
+    .rules h2 {
+        font-size: 18px;
+    }
+}
 </style>
+
 <section class="rules">
     <h2>GOODVIBES RULES</h2>
 
@@ -409,6 +458,7 @@
         <p>⚠️ Follow Discord's Terms of Service</p>
     </div>
 </section>
+
 <footer class="footer">
     <span>BY ZOHIR</span>
 </footer>
