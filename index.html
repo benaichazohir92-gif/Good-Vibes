@@ -49,21 +49,47 @@ body {
 
 .bg {
     position: fixed;
-    inset: 0;
+    inset: -10%;
     z-index: 0;
 
     background:
         radial-gradient(
             circle at 20% 20%,
-            rgba(124,58,237,.35),
+            rgba(124,58,237,.40),
             transparent 35%
         ),
         radial-gradient(
             circle at 80% 80%,
-            rgba(232,121,249,.18),
+            rgba(232,121,249,.25),
             transparent 35%
         ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(124,58,237,.20),
+            transparent 40%
+        ),
         #08050f;
+
+    background-size: 150% 150%;
+    animation: bgMove 6s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes bgMove {
+    0% {
+        background-position: 0% 0%;
+        transform: scale(1);
+    }
+
+    50% {
+        background-position: 100% 60%;
+        transform: scale(1.07);
+    }
+
+    100% {
+        background-position: 20% 100%;
+        transform: scale(1);
+    }
 }
 
 .particles {
