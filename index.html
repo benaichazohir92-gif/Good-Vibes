@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ar" dir="ltr">
 <head>
@@ -22,6 +21,7 @@
     --pink: #e879f9;
     --text: #f3eefc;
     --muted: #9c8fc2;
+    --card-border: rgba(168, 85, 247, 0.25);
 }
 
 * {
@@ -30,8 +30,7 @@
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     min-height: 100%;
     background: var(--bg);
     color: var(--text);
@@ -42,7 +41,7 @@ body {
 body {
     min-height: 100vh;
     position: relative;
-    padding: 40px 20px;
+    padding: 40px 20px 100px;
 }
 
 /* BACKGROUND */
@@ -51,45 +50,20 @@ body {
     position: fixed;
     inset: -10%;
     z-index: 0;
-
     background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(124,58,237,.40),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(232,121,249,.25),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 50% 100%,
-            rgba(124,58,237,.20),
-            transparent 40%
-        ),
+        radial-gradient(circle at 20% 20%, rgba(124,58,237,.40), transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(232,121,249,.25), transparent 35%),
+        radial-gradient(circle at 50% 100%, rgba(124,58,237,.20), transparent 40%),
         #08050f;
-
     background-size: 150% 150%;
     animation: bgMove 6s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
 @keyframes bgMove {
-    0% {
-        background-position: 0% 0%;
-        transform: scale(1);
-    }
-
-    50% {
-        background-position: 100% 60%;
-        transform: scale(1.07);
-    }
-
-    100% {
-        background-position: 20% 100%;
-        transform: scale(1);
-    }
+    0% { background-position: 0% 0%; transform: scale(1); }
+    50% { background-position: 100% 60%; transform: scale(1.07); }
+    100% { background-position: 20% 100%; transform: scale(1); }
 }
 
 .particles {
@@ -109,29 +83,30 @@ body {
     animation: floatUp linear infinite;
 }
 
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 0; }
+    10% { opacity: .8; }
+    90% { opacity: .5; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
 /* MAIN */
 
 main {
     position: relative;
     z-index: 5;
-
     width: 100%;
     max-width: 900px;
     margin: auto;
-
     text-align: center;
 }
 
-/* TOP */
-
 .eyebrow {
     margin-bottom: 25px;
-
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-
     color: var(--violet-bright);
 }
 
@@ -140,64 +115,49 @@ main {
     font-size: clamp(45px, 11vw, 100px);
     font-weight: 900;
     line-height: 1;
-
     text-transform: uppercase;
-
     animation: glow 4s ease-in-out infinite;
 }
 
-.logo .good {
-    color: #fff;
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 20px rgba(168,85,247,.35)); }
+    50% { filter: drop-shadow(0 0 38px rgba(232,121,249,.55)); }
 }
 
+.logo .good { color: #fff; }
+
 .logo .vibes {
-    background: linear-gradient(
-        100deg,
-        var(--violet-bright),
-        var(--pink),
-        var(--violet-bright)
-    );
-
+    background: linear-gradient(100deg, var(--violet-bright), var(--pink), var(--violet-bright));
     background-size: 200%;
-
     -webkit-background-clip: text;
     background-clip: text;
-
     color: transparent;
-
     animation: shimmer 5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .underline {
     width: 100px;
     height: 3px;
-
     margin: 20px auto 30px;
-
     border-radius: 20px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--pink),
-        transparent
-    );
+    background: linear-gradient(90deg, transparent, var(--pink), transparent);
 }
 
 .tagline {
     max-width: 500px;
-    margin: auto auto 40px;
-
+    margin: 0 auto 40px;
     font-family: 'Unbounded', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.8;
-
     color: var(--muted);
 }
 
-.tagline strong {
-    color: #fff;
-}
+.tagline strong { color: #fff; }
 
 /* BUTTONS */
 
@@ -206,7 +166,6 @@ main {
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
-
     margin-bottom: 45px;
 }
 
@@ -214,44 +173,28 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 15px 28px;
-
     border-radius: 999px;
-
     text-decoration: none;
-
     font-weight: 700;
     font-size: 14px;
-
     transition: .25s ease;
 }
 
 .discord {
     color: white;
-
-    background: linear-gradient(
-        135deg,
-        var(--violet),
-        var(--violet-bright)
-    );
-
+    background: linear-gradient(135deg, var(--violet), var(--violet-bright));
     box-shadow: 0 10px 30px rgba(124,58,237,.35);
 }
 
 .tiktok {
     color: white;
-
     background: rgba(255,255,255,.05);
-
     border: 1px solid rgba(168,85,247,.3);
-
     backdrop-filter: blur(10px);
 }
 
-.btn:hover {
-    transform: translateY(-4px);
-}
+.btn:hover { transform: translateY(-4px); }
 
 /* SOUND */
 
@@ -259,26 +202,21 @@ main {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-
     gap: 5px;
-
     height: 35px;
-
-    margin-bottom: 45px;
+    margin-bottom: 15px;
 }
 
 .soundwave span {
     width: 4px;
-
     border-radius: 5px;
-
-    background: linear-gradient(
-        180deg,
-        var(--pink),
-        var(--violet)
-    );
-
+    background: linear-gradient(180deg, var(--pink), var(--violet));
     animation: wave 1.2s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: scaleY(.4); opacity: .6; }
+    50% { transform: scaleY(1); opacity: 1; }
 }
 
 .soundwave span:nth-child(1) { height: 12px; }
@@ -296,179 +234,90 @@ main {
     left: 25px;
     top: 50%;
     transform: translateY(-50%);
-
     width: 240px;
     max-height: 68vh;
-
     padding: 18px;
-
     z-index: 999;
-
-    background: linear-gradient(
-        145deg,
-        rgba(15, 9, 28, 0.94),
-        rgba(7, 4, 14, 0.94)
-    );
-
-    border: 1px solid rgba(168, 85, 247, 0.32);
+    background: linear-gradient(145deg, rgba(15,9,28,.94), rgba(7,4,14,.94));
+    border: 1px solid rgba(168,85,247,.32);
     border-radius: 20px;
-
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.4),
-        0 0 35px rgba(124, 58, 237, 0.12);
-
+    box-shadow: 0 15px 45px rgba(0,0,0,.4), 0 0 35px rgba(124,58,237,.12);
     overflow-y: auto;
     overflow-x: hidden;
-
     scrollbar-width: thin;
     scrollbar-color: #a855f7 transparent;
 }
 
-/* Chrome / Edge scrollbar */
-.staff::-webkit-scrollbar {
-    width: 5px;
-}
-
-.staff::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.staff::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-        #7c3aed,
-        #e879f9
-    );
-
-    border-radius: 20px;
-}
-
-.staff::-webkit-scrollbar-thumb:hover {
-    background: #e879f9;
-}
-
-/* TITLE */
+.staff::-webkit-scrollbar { width: 5px; }
+.staff::-webkit-scrollbar-track { background: transparent; }
+.staff::-webkit-scrollbar-thumb { background: linear-gradient(#7c3aed, #e879f9); border-radius: 20px; }
+.staff::-webkit-scrollbar-thumb:hover { background: #e879f9; }
 
 .staff h2 {
     margin: 2px 0 18px;
-
     text-align: center;
-
     font-family: 'Unbounded', sans-serif;
     font-size: 12px;
     font-weight: 800;
-
     letter-spacing: 3px;
-
     color: #fff;
-
     position: sticky;
     top: 0;
-
     padding-bottom: 10px;
-
-    background: rgba(10, 6, 18, 0.9);
-
+    background: rgba(10,6,18,.9);
     z-index: 2;
 }
 
 .staff h2::after {
     content: "";
-
     display: block;
-
     width: 45px;
     height: 2px;
-
     margin: 9px auto 0;
-
     border-radius: 10px;
-
-    background: linear-gradient(
-        90deg,
-        #7c3aed,
-        #e879f9
-    );
-
+    background: linear-gradient(90deg, #7c3aed, #e879f9);
     box-shadow: 0 0 10px rgba(232,121,249,.5);
 }
-
-/* STAFF CARD */
 
 .staff-member {
     display: flex;
     align-items: center;
-
     gap: 12px;
-
     width: 100%;
-
     padding: 12px;
-
     margin-top: 10px;
-
     border-radius: 13px;
-
     background: rgba(255,255,255,.035);
-
     border: 1px solid rgba(168,85,247,.13);
-
-    transition:
-        transform .25s ease,
-        background .25s ease,
-        border-color .25s ease,
-        box-shadow .25s ease;
+    transition: transform .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
 .staff-member:hover {
     transform: translateX(5px);
-
     background: rgba(168,85,247,.09);
-
     border-color: rgba(168,85,247,.4);
-
-    box-shadow:
-        0 0 20px rgba(168,85,247,.12);
+    box-shadow: 0 0 20px rgba(168,85,247,.12);
 }
-
-/* ONLINE DOT */
 
 .status {
     width: 9px;
     height: 9px;
-
     flex: 0 0 9px;
-
     border-radius: 50%;
-
     background: #a855f7;
-
-    box-shadow:
-        0 0 7px #a855f7,
-        0 0 15px rgba(168,85,247,.55);
+    box-shadow: 0 0 7px #a855f7, 0 0 15px rgba(168,85,247,.55);
 }
 
-/* NAME + ROLE */
-
-.staff-info {
-    min-width: 0;
-    text-align: left;
-}
+.staff-info { min-width: 0; text-align: left; }
 
 .staff-name {
     display: block;
-
     font-family: 'Unbounded', sans-serif;
-
     font-size: 10px;
     font-weight: 800;
-
     letter-spacing: .5px;
-
     color: #fff;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -476,541 +325,431 @@ main {
 
 .staff-role {
     display: block;
-
     margin-top: 5px;
-
     font-family: 'Manrope', sans-serif;
-
     font-size: 9px;
     font-weight: 700;
-
     color: #d17cff;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* MOBILE */
-
 @media (max-width: 900px) {
-
     .staff {
         position: relative;
-
         left: auto;
         top: auto;
-
         transform: none;
-
         width: min(92%, 340px);
-
         max-height: 55vh;
-
         margin: 40px auto;
     }
-
 }
 
-</style>
-
-</head>
-
-<body>
-
-<div class="bg"></div>
-
-<div class="particles" id="particles"></div>
-
-
-<!-- STAFF -->
-
-<div class="staff">
-
-    <h2>OUR STAFF</h2>
-
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">Steezzie</span>
-            <span class="staff-role">BOSS</span>
-        </div>
-
-    </div> 
-    
-     <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">شانكس</span>
-            <span class="staff-role">Dev</span>
-        </div>
-
-    </div>
-<div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">DUCK</span>
-            <span class="staff-role">Founder</span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">! ZAK </span>
-            <span class="staff-role">Co Founder + Dev </span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">! ISSAM</span>
-            <span class="staff-role">Co Founder</span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">ZOHIIIR</span>
-            <span class="staff-role">staff OF the week + Astryx </span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">! ATTROX</span>
-            <span class="staff-role">Echelon + HIGH STAFF</span>
-        </div>
-
-    </div>
-    
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">Max lazm Dzaster</span>
-            <span class="staff-role">Echelon + HiGH STAFF</span>
-        </div>
-
-    </div>
-    
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">! ROSSO</span>
-            <span class="staff-role">Supervisor General + HIGH STAFF</span>
-        </div>
-
-    </div>
-    
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">! ZINOUBA</span>
-            <span class="staff-role">HEAD OF OPERATION + HIGH STAFF</span>
-        </div>
-
-    </div>
-
-    
-     <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">MOUKA</span>
-            <span class="staff-role">DOMINION</span>
-        </div>
-
-    </div>
-     <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">! ALIX</span>
-            <span class="staff-role">ASTRYX</span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">Noubii</span>
-            <span class="staff-role">ASTRYX</span>
-        </div>
-
-    </div>
-      <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">! NADIR</span>
-            <span class="staff-role">ASTRYX</span>
-        </div>
-
-    </div>
-      <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">AWEXA</span>
-            <span class="staff-role">ASTRYX</span>
-        </div>
-
-    </div>
-      <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">SALSABIIL</span>
-            <span class="staff-role">HOLLOW</span>
-        </div>
-
-    </div>
-      <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">TECHKOUI</span>
-            <span class="staff-role">HOLLOW</span>
-        </div>
-
-    </div>
-      <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">MIDO</span>
-            <span class="staff-role">HOLLOW</span>
-        </div>
-
-    </div>
-      <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">LUNAA</span>
-            <span class="staff-role">NYXARIS</span>
-        </div>
-
-    </div>
-      <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">MUGI</span>
-            <span class="staff-role">NUXARIS</span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">MOHAMMED</span>
-            <span class="staff-role">TRIAL STAFF</span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">SHODOW</span>
-            <span class="staff-role">TRIAL STAFF</span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">THALASSOPHILE</span>
-            <span class="staff-role">TRIAL STAFF</span>
-        </div>
-
-    </div>
-    <div class="staff-member">
-
-        <div class="status"></div>
-
-        <div class="staff-info">
-            <span class="staff-name">MARAFIK</span>
-            <span class="staff-role">TRIAL STAFF</span>
-        </div>
-
-    </div>
-</div>
-
-
-<!-- MAIN -->
-
-<main>
-
-    <div class="eyebrow">
-        Discord Community
-    </div>
-
-    <div class="logo">
-
-        <span class="good">GOOD</span>
-        <span class="vibes">VIBES</span>
-
-    </div>
-
-    <div class="underline"></div>
-
-   <p class="tagline">
-    🌟 Welcome to Good Vibes! 🌟
-    🌙 A cozy community for gaming, chilling, and making friends.
-    It’s all about the vibe.
-</p>
-
-
-    <div class="buttons">
-
-        <a
-            class="btn discord"
-            href="https://discord.gg/bTTuaHewn"
-            target="_blank"
-            rel="noopener"
-        >
-            Join our Discord
-        </a>
-
-        <a
-            class="btn tiktok"
-            href="https://www.tiktok.com/@good_vibes920"
-            target="_blank"
-            rel="noopener"
-        >
-            Follow on TikTok
-        </a>
-
-    </div>
-
-
-    <div class="soundwave">
-
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </div>
-
-</main>
-
-
-
-
-
-<script>
-
-const particles =
-    document.getElementById("particles");
-
-for (let i = 0; i < 25; i++) {
-
-    const p = document.createElement("div");
-
-    p.className = "particle";
-
-    const size =
-        2 + Math.random() * 4;
-
-    p.style.width =
-        size + "px";
-
-    p.style.height =
-        size + "px";
-
-    p.style.left =
-        Math.random() * 100 + "vw";
-
-    p.style.animationDuration =
-        (8 + Math.random() * 10) + "s";
-
-    p.style.animationDelay =
-        Math.random() * 8 + "s";
-
-    particles.appendChild(p);
+/* GOOD VIBES EXPERIENCE */
+
+.gv-experience {
+    position: relative;
+    z-index: 10;
+    width: min(100%, 900px);
+    margin: 80px auto 20px;
+    padding: 20px;
 }
 
-</script>
-```html
-<style>
+.gv-heading { text-align: center; margin-bottom: 35px; }
+
+.gv-heading span {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: #a855f7;
+}
+
+.gv-heading h2 {
+    margin-top: 12px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(22px, 5vw, 38px);
+    font-weight: 900;
+    background: linear-gradient(90deg, #ffffff, #e879f9, #a855f7, #ffffff);
+    background-size: 250%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gvTitle 5s linear infinite;
+}
+
+.gv-heading p { margin-top: 12px; color: #9c8fc2; font-size: 13px; }
+
+.gv-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.gv-card {
+    position: relative;
+    min-height: 220px;
+    padding: 25px 20px;
+    overflow: hidden;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(168,85,247,.12), rgba(255,255,255,.025));
+    border: 1px solid rgba(168,85,247,.18);
+    backdrop-filter: blur(15px);
+    transition: .35s ease;
+}
+
+.gv-card::before {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    top: -70px;
+    right: -70px;
+    border-radius: 50%;
+    background: #a855f7;
+    filter: blur(65px);
+    opacity: .25;
+    transition: .4s ease;
+}
+
+.gv-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(232,121,249,.55);
+    box-shadow: 0 20px 50px rgba(0,0,0,.35), 0 0 30px rgba(168,85,247,.15);
+}
+
+.gv-card:hover::before { transform: scale(1.5); opacity: .45; }
+
+.gv-card.featured {
+    border-color: rgba(232,121,249,.38);
+    background: linear-gradient(145deg, rgba(124,58,237,.20), rgba(232,121,249,.06));
+    box-shadow: 0 0 35px rgba(124,58,237,.12);
+}
+
+.gv-icon {
+    position: relative;
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(168,85,247,.25);
+    font-size: 21px;
+    box-shadow: 0 0 20px rgba(168,85,247,.12);
+}
+
+.gv-number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 9px;
+    color: rgba(255,255,255,.25);
+    letter-spacing: 2px;
+}
+
+.gv-card h3 {
+    position: relative;
+    z-index: 2;
+    margin-top: 22px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 13px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.gv-card p {
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+    color: #9c8fc2;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.gv-line {
+    width: 35px;
+    height: 2px;
+    margin-top: 18px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #7c3aed, #e879f9);
+    transition: .3s ease;
+}
+
+.gv-card:hover .gv-line { width: 70px; box-shadow: 0 0 12px #e879f9; }
+
+@keyframes gvTitle {
+    0% { background-position: 0%; }
+    100% { background-position: 250%; }
+}
+
+@media (max-width: 700px) {
+    .gv-cards { grid-template-columns: 1fr; }
+    .gv-card { min-height: 190px; }
+}
+
+/* RULES SECTION (NEW) */
+
+.rules-section {
+    position: relative;
+    z-index: 10;
+    width: min(100%, 760px);
+    margin: 80px auto 20px;
+    padding: 20px;
+}
+
+.rules-header { text-align: center; margin-bottom: 14px; }
+
+.rules-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 5vw, 36px);
+    color: #fff;
+}
+
+.rules-title span {
+    background: linear-gradient(100deg, var(--violet-bright) 10%, var(--pink) 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.rules-subtitle {
+    font-size: 12px;
+    letter-spacing: .05em;
+    color: var(--muted);
+    margin: 10px 0 36px;
+    text-align: center;
+    direction: rtl;
+}
+
+.rules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    direction: rtl;
+}
+
+.rule-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 18px 20px;
+    backdrop-filter: blur(6px);
+    transition: border-color .25s ease, transform .25s ease, background .25s ease;
+}
+
+.rule-card:hover {
+    border-color: rgba(232,121,249,.45);
+    background: rgba(168,85,247,.06);
+    transform: translateY(-2px);
+}
+
+.rule-num {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--violet) 0%, var(--violet-bright) 100%);
+    box-shadow: 0 0 14px rgba(168,85,247,.4);
+}
+
+.rule-text {
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    padding-top: 5px;
+}
+
+@media (max-width: 600px) {
+    .rule-card { padding: 14px 16px; gap: 12px; }
+    .rule-text { font-size: 14px; }
+}
+
+/* FOOTER */
+
 .zohir-footer {
     width: 100%;
     margin-top: 70px;
     padding: 30px 20px 35px;
     text-align: center;
-
-    border-top: 1px solid rgba(168, 85, 247, 0.12);
-
-    background: rgba(8, 5, 15, 0.35);
-
+    border-top: 1px solid rgba(168,85,247,.12);
+    background: rgba(8,5,15,.35);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 
 .zohir-footer span {
     display: inline-block;
-
     font-family: 'Unbounded', sans-serif;
     font-size: 12px;
     font-weight: 800;
-
     letter-spacing: 4px;
-
-    color: rgba(255, 255, 255, 0.65);
-
-    text-shadow:
-        0 0 10px rgba(168, 85, 247, 0.25);
-
-    transition: 0.3s ease;
+    color: rgba(255,255,255,.65);
+    text-shadow: 0 0 10px rgba(168,85,247,.25);
+    transition: .3s ease;
 }
 
 .zohir-footer span:hover {
     color: #ffffff;
-
     letter-spacing: 5px;
-
-    text-shadow:
-        0 0 10px rgba(168, 85, 247, 0.5),
-        0 0 25px rgba(232, 121, 249, 0.3);
+    text-shadow: 0 0 10px rgba(168,85,247,.5), 0 0 25px rgba(232,121,249,.3);
 }
+
 </style>
+</head>
 
-<style>
-.zohir-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
+<body>
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+<div class="bg"></div>
+<div class="particles" id="particles"></div>
 
-    z-index: 9999;
+<!-- STAFF -->
+<div class="staff">
+    <h2>OUR STAFF</h2>
 
-    background: rgba(8, 5, 15, 0.88);
-    border-top: 1px solid rgba(168, 85, 247, 0.15);
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">Steezzie</span><span class="staff-role">BOSS</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">شانكس</span><span class="staff-role">Dev</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">DUCK</span><span class="staff-role">Founder</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">! ZAK</span><span class="staff-role">Co Founder + Dev</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">! ISSAM</span><span class="staff-role">Co Founder</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">ZOHIIIR</span><span class="staff-role">staff OF the week + Astryx</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">! ATTROX</span><span class="staff-role">Echelon + HIGH STAFF</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">Max lazm Dzaster</span><span class="staff-role">Echelon + HIGH STAFF</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">! ROSSO</span><span class="staff-role">Supervisor General + HIGH STAFF</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">! ZINOUBA</span><span class="staff-role">HEAD OF OPERATION + HIGH STAFF</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">MOUKA</span><span class="staff-role">DOMINION</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">! ALIX</span><span class="staff-role">ASTRYX</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">Noubii</span><span class="staff-role">ASTRYX</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">! NADIR</span><span class="staff-role">ASTRYX</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">AWEXA</span><span class="staff-role">ASTRYX</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">SALSABIIL</span><span class="staff-role">HOLLOW</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">TECHKOUI</span><span class="staff-role">HOLLOW</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">MIDO</span><span class="staff-role">HOLLOW</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">LUNAA</span><span class="staff-role">NYXARIS</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">MUGI</span><span class="staff-role">NUXARIS</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">MOHAMMED</span><span class="staff-role">TRIAL STAFF</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">SHODOW</span><span class="staff-role">TRIAL STAFF</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">THALASSOPHILE</span><span class="staff-role">TRIAL STAFF</span></div></div>
+    <div class="staff-member"><div class="status"></div><div class="staff-info"><span class="staff-name">MARAFIK</span><span class="staff-role">TRIAL STAFF</span></div></div>
+</div>
 
-    backdrop-filter: blur(14px);
-}
+<!-- MAIN -->
+<main>
 
-.zohir-footer span {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 4px;
-    color: rgba(255,255,255,0.65);
-}
-</style>
-<style>
-.zohir-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
+    <div class="eyebrow">Discord Community</div>
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    <div class="logo">
+        <span class="good">GOOD</span>
+        <span class="vibes">VIBES</span>
+    </div>
 
-    z-index: 9999;
+    <div class="underline"></div>
 
-    background: rgba(8, 5, 15, 0.88);
-    border-top: 1px solid rgba(168, 85, 247, 0.15);
+    <p class="tagline">
+        🌟 Welcome to Good Vibes! 🌟<br>
+        🌙 A cozy community for gaming, chilling, and making friends.
+        It's all about the vibe.
+    </p>
 
-    backdrop-filter: blur(14px);
-}
+    <div class="buttons">
+        <a class="btn discord" href="https://discord.gg/bTTuaHewn" target="_blank" rel="noopener">Join our Discord</a>
+        <a class="btn tiktok" href="https://www.tiktok.com/@good_vibes920" target="_blank" rel="noopener">Follow on TikTok</a>
+        <a class="btn tiktok" href="#rules">Rules</a>
+    </div>
 
-.zohir-footer span {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 4px;
-    color: rgba(255,255,255,0.65);
-}
-</style>
+    <div class="soundwave">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
 
-<style>
-.zohir-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 80px;
+</main>
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+<!-- GOOD VIBES EXPERIENCE -->
+<section class="gv-experience">
+    <div class="gv-heading">
+        <span>WHY GOOD VIBES?</span>
+        <h2>MORE THAN A SERVER</h2>
+        <p>Gaming • Friends • Chill • Good Energy</p>
+    </div>
 
-    z-index: 9999;
+    <div class="gv-cards">
+        <div class="gv-card">
+            <div class="gv-icon">🎮</div>
+            <div class="gv-number">01</div>
+            <h3>GAMING</h3>
+            <p>Play together, discover new games and enjoy every moment.</p>
+            <div class="gv-line"></div>
+        </div>
 
-    background: rgba(8, 5, 15, 0.88);
-    border-top: 1px solid rgba(168, 85, 247, 0.15);
+        <div class="gv-card featured">
+            <div class="gv-icon">✦</div>
+            <div class="gv-number">02</div>
+            <h3>GOOD VIBES</h3>
+            <p>A chill community where the vibe always stays alive.</p>
+            <div class="gv-line"></div>
+        </div>
 
-    backdrop-filter: blur(14px);
-}
+        <div class="gv-card">
+            <div class="gv-icon">💬</div>
+            <div class="gv-number">03</div>
+            <h3>COMMUNITY</h3>
+            <p>Meet people, talk, laugh and make new friends.</p>
+            <div class="gv-line"></div>
+        </div>
+    </div>
+</section>
 
-.zohir-footer span {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 4px;
-    color: rgba(255,255,255,0.65);
-}
-</style>
+<!-- RULES (NEW) -->
+<section class="rules-section" id="rules">
+    <div class="rules-header">
+        <h2 class="rules-title">قوانين <span>السيرفر</span></h2>
+        <p class="rules-subtitle">عدم قرائة القوانين ليست عذراً</p>
+    </div>
+    <div class="rules-list">
+        <div class="rule-card"><div class="rule-num">1</div><div class="rule-text">الإحترام المتبادل، وعدم السب والشتم.</div></div>
+        <div class="rule-card"><div class="rule-num">2</div><div class="rule-text">النقاشات الدينية والسياسية ممنوعة لِما قد تسببه من خلافات بين الأعضاء، المواضيع الحساسة والتلميحات.</div></div>
+        <div class="rule-card"><div class="rule-num">3</div><div class="rule-text">يمنع نشر صور، روابط، أو فيديوهات ذات محتوى مخل أو ضار.</div></div>
+        <div class="rule-card"><div class="rule-num">4</div><div class="rule-text">يمنع وضع صورة، اسم، أو كُنية مخلة مخالفة للآداب العامة.</div></div>
+        <div class="rule-card"><div class="rule-num">5</div><div class="rule-text">يمنع العنصرية والتعدي على الأعضاء والدِين.</div></div>
+        <div class="rule-card"><div class="rule-num">6</div><div class="rule-text">يمنع الترويج أو نشر روابط لمسابقات، حسابات، أو سيرفرات خارجية.</div></div>
+        <div class="rule-card"><div class="rule-num">7</div><div class="rule-text">يمنع السبام (رسائل متكررة أو الطويلة جداً) بجميع أنواعه.</div></div>
+        <div class="rule-card"><div class="rule-num">8</div><div class="rule-text">يمنع طلب الرتب والكريديتس.</div></div>
+        <div class="rule-card"><div class="rule-num">9</div><div class="rule-text">يمنع دعم / ذكر المثلية.</div></div>
+    </div>
+</section>
 
 <footer class="zohir-footer">
     <span>BY ZOHIR</span>
 </footer>
 
-
+<script>
+const particles = document.getElementById("particles");
+for (let i = 0; i < 25; i++) {
+    const p = document.createElement("div");
+    p.className = "particle";
+    const size = 2 + Math.random() * 4;
+    p.style.width = size + "px";
+    p.style.height = size + "px";
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.animationDuration = (8 + Math.random() * 10) + "s";
+    p.style.animationDelay = Math.random() * 8 + "s";
+    particles.appendChild(p);
+}
+</script>
 
 </body>
 </html>
